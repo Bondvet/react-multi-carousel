@@ -62,6 +62,8 @@ export interface CarouselProps {
   rewind?: boolean;
   rewindWithAnimation?: boolean;
   rtl?: boolean;
+  listRole?: string;
+  itemRole?: string;
 }
 
 export type StateCallBack = CarouselInternalState;

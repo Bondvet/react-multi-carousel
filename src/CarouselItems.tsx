@@ -29,7 +29,8 @@ const CarouselItems = ({
     itemClass,
     itemAriaLabel,
     partialVisbile,
-    partialVisible
+    partialVisible,
+    itemRole
   } = props;
   const {
     flexBisis,
@@ -54,6 +55,7 @@ const CarouselItems = ({
           return (
             <li
               key={index}
+              role={itemRole}
               data-index={index}
               onClick={() => {
                 if (props.focusOnSelect) {

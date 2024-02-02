@@ -374,7 +374,7 @@ class Carousel extends React.Component<CarouselProps, CarouselInternalState> {
     if (this.transformPlaceHolder !== this.state.transform) {
       this.transformPlaceHolder = this.state.transform;
     }
-    /* 
+    /*
      If we reach the last slide of a non-infinite carousel we can rewind the carousel
      if opted in to autoPlay (lightweight infinite mode alternative).
     */
@@ -810,7 +810,8 @@ class Carousel extends React.Component<CarouselProps, CarouselInternalState> {
       renderDotsOutside,
       renderButtonGroupOutside,
       className,
-      rtl
+      rtl,
+      listRole
     } = this.props;
     if (process.env.NODE_ENV !== "production") {
       throwError(this.state, this.props);
@@ -845,6 +846,7 @@ class Carousel extends React.Component<CarouselProps, CarouselInternalState> {
         >
           <ul
             ref={this.listRef}
+            role={listRole}
             className={`react-multi-carousel-track ${sliderClass}`}
             style={{
               // todos.  Remove this from virtual dom.
