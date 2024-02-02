@@ -52,6 +52,9 @@ const CarouselItems = ({
     <>
       {(infinite ? clones : React.Children.toArray(children)).map(
         (child, index) => {
+          // get certain aria props from child
+          const { ariaLabel, ariaSelected, ...childProps } = child.props;
+
           return (
             <li
               key={index}
@@ -63,12 +66,9 @@ const CarouselItems = ({
                 }
               }}
               aria-hidden={getIfSlideIsVisbile(index, state) ? "false" : "true"}
+              aria-selected={ariaSelected}
               aria-label={
-                itemAriaLabel
-                  ? itemAriaLabel
-                  : child.props.ariaLabel
-                  ? child.props.ariaLabel
-                  : null
+                itemAriaLabel ? itemAriaLabel : ariaLabel ? ariaLabel : null
               }
               style={{
                 flex: shouldRenderOnSSR ? `1 0 ${flexBisis}%` : "auto",
@@ -90,7 +90,7 @@ const CarouselItems = ({
                   : ""
               } ${itemClass}`}
             >
-              {child}
+              {React.cloneElement(child, childProps)}
             </li>
           );
         }
