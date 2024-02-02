@@ -54,6 +54,7 @@ const CarouselItems = ({
         (child, index) => {
           // get certain aria props from child
           const { ariaLabel, ariaSelected, ...childProps } = child.props;
+          const filteredChild = { ...child, props: childProps };
 
           const ariaHidden = !getIfSlideIsVisbile(index, state);
           const tabIndex = ariaHidden ? -1 : 0;
@@ -94,9 +95,7 @@ const CarouselItems = ({
                   : ""
               } ${itemClass}`}
             >
-              {React.cloneElement(child, {
-                ...childProps,
-                ariaSelected: "",
+              {React.cloneElement(filteredChild, {
                 tabIndex,
                 ariaHidden: ariaHidden || undefined
               })}
