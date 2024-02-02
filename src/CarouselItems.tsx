@@ -97,7 +97,8 @@ const CarouselItems = ({
               {React.cloneElement(child, {
                 ...childProps,
                 ariaSelected: "",
-                tabIndex
+                tabIndex,
+                ariaHidden: ariaHidden || undefined
               })}
             </li>
           );
