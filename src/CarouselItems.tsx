@@ -56,6 +56,8 @@ const CarouselItems = ({
           const { ariaLabel, ariaSelected, ...childProps } = child.props;
 
           const ariaHidden = getIfSlideIsVisbile(index, state);
+          const tabIndex = ariaHidden ? -1 : 0;
+
           return (
             <li
               key={index}
@@ -67,7 +69,7 @@ const CarouselItems = ({
                 }
               }}
               aria-hidden={ariaHidden}
-              tabIndex={ariaHidden ? -1 : 0}
+              tabIndex={tabIndex}
               aria-selected={ariaSelected}
               aria-label={
                 itemAriaLabel ? itemAriaLabel : ariaLabel ? ariaLabel : null
@@ -92,7 +94,11 @@ const CarouselItems = ({
                   : ""
               } ${itemClass}`}
             >
-              {React.cloneElement(child, childProps)}
+              {React.cloneElement(child, {
+                ...childProps,
+                ariaSelected: "",
+                tabIndex
+              })}
             </li>
           );
         }
