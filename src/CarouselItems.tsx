@@ -55,6 +55,7 @@ const CarouselItems = ({
           // get certain aria props from child
           const { ariaLabel, ariaSelected, ...childProps } = child.props;
 
+          const ariaHidden = getIfSlideIsVisbile(index, state);
           return (
             <li
               key={index}
@@ -65,7 +66,8 @@ const CarouselItems = ({
                   goToSlide(index);
                 }
               }}
-              aria-hidden={getIfSlideIsVisbile(index, state) ? "false" : "true"}
+              aria-hidden={ariaHidden}
+              tabIndex={ariaHidden ? -1 : 0}
               aria-selected={ariaSelected}
               aria-label={
                 itemAriaLabel ? itemAriaLabel : ariaLabel ? ariaLabel : null
